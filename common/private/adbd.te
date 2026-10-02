@@ -1,2 +1,9 @@
-allow adbd adbroot:binder call;
-allow adbd adbroot_service:service_manager find;
+# adb-root (LineageOS "rooted debugging") integration neutered.
+#
+# The edges below let adbd reach the adbroot helper, which stock user builds never
+# expose. Integrity detectors (e.g. Duck Detector's DirtySepolicy access oracle)
+# flag "adbd -> adbroot:binder call: Allowed" as aftermarket-policy evidence, so the
+# adbd side of the path is removed. The adbroot domain/service still exist in policy
+# but are now unreachable from adbd. Restore these to re-enable adb root:
+#   allow adbd adbroot:binder call;
+#   allow adbd adbroot_service:service_manager find;
