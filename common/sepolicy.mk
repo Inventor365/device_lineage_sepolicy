@@ -15,6 +15,11 @@ SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += \
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
     device/lineage/sepolicy/common/private
 
+ifneq ($(TARGET_BUILD_VARIANT),user)
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
+    device/lineage/sepolicy/common/private_debug
+endif
+
 ifeq ($(TARGET_USES_PREBUILT_VENDOR_SEPOLICY), true)
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
     device/lineage/sepolicy/common/dynamic \
